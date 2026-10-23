@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Number Game</title>
+</head>
+<body>
+    <h1>Secret Number Game</h1>
+    <p>Guess the secret number between 1 and 20.</p>
+    <button onclick="playGame()">Start Game</button>
+    <p id="result"></p>
+
+    <script>
+        function playGame() {
+            const secret = 15;
+            let guess;
+            let attempts = 0;
+
+            while (guess != secret && attempts < 5) {
+                const answer = prompt("Guess a number between 1 and 20:");
+
+                if (answer === null) {
+                    document.getElementById("result").textContent =
+                        "Game cancelled.";
+                    return;
+                }
+
+                guess = Number(answer);
+                attempts++;
+
+                if (guess < secret) {
+                    alert("Too Low!");
+                } else if (guess > secret) {
+                    alert("Too High!");
+                }
+            }
+
+            if (guess === secret) {
+                alert("Correct!");
+                document.getElementById("result").textContent =
+                    "You won in " + attempts + " attempt(s)!";
+            } else {
+                alert("Game Over!");
+                document.getElementById("result").textContent =
+                    "Game over. The secret number was 15.";
+            }
+        }
+    </script>
+</body>
+</html>
